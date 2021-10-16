@@ -21,6 +21,9 @@ pygame.draw.rect(screen, rectColor, [240, 0, 200, 50], 0)
 # Amount of coins
 coinCounter = 0
 
+# Amount of coins that you gonna get for 1 click
+coinsForClick = 1
+
 # Auto Clicker info X multiplier number
 autoClickMultiplierX = 1
 
@@ -153,24 +156,32 @@ while mainLoop:
 
             # Increase the number of coins
             if 200 < pos[0] < 480 and 180 < pos[1] < 470:
-                coinCounter += 1
+                coinCounter += coinsForClick
 
             # Increase the number of AutoClickers and change the price
             if 490 < pos[0] < 670 and 40 < pos[1] < 90 and coinCounter >= autoClickMultiplierPrice:
                 coinCounter -= autoClickMultiplierPrice
-                autoClickMultiplierPrice = int(autoClickMultiplierPrice * 1.3)
+                autoClickMultiplierPrice = int(autoClickMultiplierPrice * 1.5)
                 autoClickMultiplierX += 1
-                # autoClick()
+                # autoClick() code
 
             # Increase the number of Multipliers and change the price
             elif 490 < pos[0] < 670 and 445 < pos[1] < 495 and coinCounter >= MultiplierMultiplierPrice:
                 coinCounter -= MultiplierMultiplierPrice
-                MultiplierMultiplierPrice = int(MultiplierMultiplierPrice * 1.3)
+                MultiplierMultiplierPrice = int(MultiplierMultiplierPrice * 1.6)
                 multiplierMultiplierX += 1
-                # multiplier
+                if coinsForClick == 1:
+                    coinsForClick = 2
+                else:
+                    coinsForClick = int(coinsForClick * 1.5)
 
             else:
                 break
+
+        #if coinCounter >= 1000:
+            #skin changer
+            #lvl 2
+            #achivment
 
     # Coin rect
     rectColor = (0, 0, 0)
