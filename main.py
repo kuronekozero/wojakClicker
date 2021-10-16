@@ -8,10 +8,15 @@ size = (700, 500)
 screen = pygame.display.set_mode(size)
 
 # Background image
-bg = pygame.image.load("images/bg.png")
+bg = pygame.image.load("images/bgs/bg.png")
 screen.blit(bg, (0, 0))
 
+# Character avatar 1
 boy1 = pygame.image.load("images/characters/boy1.png")
+screen.blit(pygame.transform.scale(boy1, (350, 350)), (170, 150))
+
+# Bg for character
+characterBg = pygame.image.load("images/bgs/characterBg.png")
 screen.blit(pygame.transform.scale(boy1, (350, 350)), (170, 150))
 
 # Coin rect
@@ -23,6 +28,22 @@ coinCounter = 0
 
 # Amount of coins that you gonna get for 1 click
 coinsForClick = 1
+
+# Character lvl
+lvl = 1
+
+# Character lvl2 counter
+lvl2Counter = False
+
+# Character lvl3 counter
+lvl3Counter = False
+
+# Character lvl4 counter
+lvl4Counter = False
+
+# Character lvl5 counter
+lvl5Counter = False
+
 
 # Auto Clicker info X multiplier number
 autoClickMultiplierX = 1
@@ -129,13 +150,28 @@ multiplierMultiplierPriceInfo = pygame.font.SysFont('Comic Sans MS', 26)
 textSurface = multiplierMultiplierPriceInfo.render(str(MultiplierMultiplierPrice), False, (255, 255, 255))
 screen.blit(textSurface, (610, 450))
 
+# lvl info text
+lvlText = pygame.font.SysFont('Comic Sans MS', 26)
+textSurface = lvlText.render('LVL:  ', False, (255, 255, 255))
+screen.blit(textSurface, (0, 0))
+
+# lvl info text rect
+lvlNumberRect = pygame.Surface((40, 40))
+lvlNumberRect.set_alpha(1000)
+lvlNumberRect.fill((0, 0, 0))
+screen.blit(lvlNumberRect, (60, 0))
+
+# lvl info number
+lvlNumberInfo = pygame.font.SysFont('Comic Sans MS', 26)
+textSurface = lvlNumberInfo.render(str(lvl), False, (255, 255, 255))
+screen.blit(textSurface, (60, 0))
+
 pygame.display.set_caption("clicker")
 
 mainLoop = True
 
 clock = pygame.time.Clock()
 
-# Автокликер не работает и из за него все вылетает
 '''
 def autoClick():
     while True:
@@ -143,6 +179,12 @@ def autoClick():
         coinCounter += 1
         time.sleep(2)
 '''
+
+# Автокликер не работает и из за него все вылетает
+
+# Анимировать уведомление о повышении уровня
+
+# Смена персонажа при повышении ЛВЛа
 
 # main loop
 while mainLoop:
@@ -178,10 +220,29 @@ while mainLoop:
             else:
                 break
 
-        #if coinCounter >= 1000:
-            #skin changer
-            #lvl 2
-            #achivment
+        # get lvl 2
+        if coinCounter >= 1000:
+            if lvl2Counter == False:
+                lvl += 1
+                lvl2Counter = True
+
+        # get lvl 3
+        if coinCounter >= 10000:
+            if lvl3Counter == False:
+                lvl += 1
+                lvl3Counter = True
+
+        # get lvl 4
+        if coinCounter >= 100000:
+            if lvl4Counter == False:
+                lvl += 1
+                lvl4Counter = True
+
+        # get lvl 5
+        if coinCounter >= 1000000:
+            if lvl5Counter == False:
+                lvl += 1
+                lvl5Counter = True
 
     # Coin rect
     rectColor = (0, 0, 0)
@@ -235,6 +296,17 @@ while mainLoop:
     multiplierMultiplier = pygame.font.SysFont('Comic Sans MS', 26)
     textSurface = multiplierMultiplier.render(str(multiplierMultiplierX), False, (255, 255, 255))
     screen.blit(textSurface, (640, 400))
+
+    # lvl info text rect
+    lvlNumberRect = pygame.Surface((40, 40))
+    lvlNumberRect.set_alpha(1000)
+    lvlNumberRect.fill((0, 0, 0))
+    screen.blit(lvlNumberRect, (60, 0))
+
+    # lvl info number
+    lvlNumberInfo = pygame.font.SysFont('Comic Sans MS', 26)
+    textSurface = lvlNumberInfo.render(str(lvl), False, (255, 255, 255))
+    screen.blit(textSurface, (60, 0))
 
     pygame.display.update()
 
