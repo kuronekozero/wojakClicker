@@ -186,6 +186,17 @@ def autoClick():
 
 # Смена персонажа при повышении ЛВЛа
 
+# Make long number short
+def shorten_number(number_to_shorten):
+    str_number_to_shorten = str(number_to_shorten)
+    if len(str_number_to_shorten) > 9 and len(str_number_to_shorten) <= 12:
+        return str_number_to_shorten[:-9] + "B"
+
+    elif len(str_number_to_shorten) >= 7 and len(str_number_to_shorten) <= 9:
+        return str_number_to_shorten[:-6] + "M"
+    else:
+        return number_to_shorten
+
 # main loop
 while mainLoop:
     for event in pygame.event.get():
@@ -244,13 +255,16 @@ while mainLoop:
                 lvl += 1
                 lvl5Counter = True
 
+    # number but round
+    coinCounterShort = shorten_number(coinCounter)
+
     # Coin rect
     rectColor = (0, 0, 0)
     pygame.draw.rect(screen, rectColor, [240, 0, 200, 50], 0)
 
     # Amount of coins
     coins = pygame.font.SysFont('Comic Sans MS', 50)
-    textSurface = coins.render(str(coinCounter), False, (235, 235, 235))
+    textSurface = coins.render(str(coinCounterShort), False, (235, 235, 235))
     screen.blit(textSurface, (240, -15))
 
     # Auto Clicker info X multiplier rect
