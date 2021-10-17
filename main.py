@@ -186,16 +186,22 @@ def autoClick():
 
 # Смена персонажа при повышении ЛВЛа
 
+# Доработать функцию ниже, чтобы она работала в коде игры
+'''
 # Make long number short
 def shorten_number(number_to_shorten):
-    str_number_to_shorten = str(number_to_shorten)
-    if len(str_number_to_shorten) > 9 and len(str_number_to_shorten) <= 12:
-        return str_number_to_shorten[:-9] + "B"
+    postfixes = ['m', 'b', ] # постфиксы для сокращенных чисел
+    briefer_nums = [10**k for k in range(6, 6+3*len(postfixes), 3)] # список наших делителей
+    for i in reversed(range(len(postfixes))):
+        if number_to_shorten > briefer_nums[i]:
+            num = number_to_shorten / briefer_nums[i]
+            int_part = int(num)
+            float_part = str(num - int_part).split('.')[1][:3]
+            return str(int_part) + '.' + float_part + postfixes[i]
+        else:
+            return number_to_shorten
+'''
 
-    elif len(str_number_to_shorten) >= 7 and len(str_number_to_shorten) <= 9:
-        return str_number_to_shorten[:-6] + "M"
-    else:
-        return number_to_shorten
 
 # main loop
 while mainLoop:
@@ -256,7 +262,7 @@ while mainLoop:
                 lvl5Counter = True
 
     # number but round
-    coinCounterShort = shorten_number(coinCounter)
+    #coinCounterShort = shorten_number(coinCounter)
 
     # Coin rect
     rectColor = (0, 0, 0)
@@ -264,7 +270,7 @@ while mainLoop:
 
     # Amount of coins
     coins = pygame.font.SysFont('Comic Sans MS', 50)
-    textSurface = coins.render(str(coinCounterShort), False, (235, 235, 235))
+    textSurface = coins.render(str(coinCounter), False, (235, 235, 235))
     screen.blit(textSurface, (240, -15))
 
     # Auto Clicker info X multiplier rect
