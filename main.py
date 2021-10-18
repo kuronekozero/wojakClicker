@@ -7,6 +7,9 @@ pygame.init()
 size = (700, 500)
 screen = pygame.display.set_mode(size)
 
+# trash
+trashPosx, trashPosy = 1000, 1000
+
 # Background image
 bg = pygame.image.load("images/bgs/bg.png")
 screen.blit(bg, (0, 0))
@@ -14,6 +17,10 @@ screen.blit(bg, (0, 0))
 # Character avatar 1
 boy1 = pygame.image.load("images/characters/boy1.png")
 screen.blit(pygame.transform.scale(boy1, (350, 350)), (170, 150))
+
+# Character avatar 2
+boy2 = pygame.image.load("images/characters/boy2.png")
+screen.blit(pygame.transform.scale(boy2, (350, 350)), (trashPosx, trashPosy))
 
 # Bg for character
 characterBg = pygame.image.load("images/bgs/characterBg.png")
@@ -29,6 +36,12 @@ coinCounter = 0
 # Amount of coins that you gonna get for 1 click
 coinsForClick = 1
 
+# click sound
+clickSound = pygame.mixer.Sound("sounds/click.ogg")
+
+# click to buy sound
+buySound = pygame.mixer.Sound("sounds/button.wav")
+
 # Character lvl
 lvl = 1
 
@@ -43,7 +56,6 @@ lvl4Counter = False
 
 # Character lvl5 counter
 lvl5Counter = False
-
 
 # Auto Clicker info X multiplier number
 autoClickMultiplierX = 1
@@ -121,7 +133,7 @@ screen.blit(buyButton, (490, 445))
 # BUY Button Text autoClicker
 buyButtonText = pygame.font.SysFont('Comic Sans MS', 26)
 textSurface = buyButtonText.render('BUY for ', False, (255, 255, 255))
-screen.blit(textSurface, (500, 45))
+screen.blit(textSurface, (490, 40))
 
 # BUY Button Text Multiplier
 buyButtonText = pygame.font.SysFont('Comic Sans MS', 26)
@@ -215,10 +227,12 @@ while mainLoop:
 
             # Increase the number of coins
             if 200 < pos[0] < 480 and 180 < pos[1] < 470:
+                clickSound.play()
                 coinCounter += coinsForClick
 
             # Increase the number of AutoClickers and change the price
             if 490 < pos[0] < 670 and 40 < pos[1] < 90 and coinCounter >= autoClickMultiplierPrice:
+                buySound.play()
                 coinCounter -= autoClickMultiplierPrice
                 autoClickMultiplierPrice = int(autoClickMultiplierPrice * 1.5)
                 autoClickMultiplierX += 1
@@ -226,6 +240,7 @@ while mainLoop:
 
             # Increase the number of Multipliers and change the price
             elif 490 < pos[0] < 670 and 445 < pos[1] < 495 and coinCounter >= MultiplierMultiplierPrice:
+                buySound.play()
                 coinCounter -= MultiplierMultiplierPrice
                 MultiplierMultiplierPrice = int(MultiplierMultiplierPrice * 1.6)
                 multiplierMultiplierX += 1
