@@ -8,7 +8,7 @@ size = (700, 500)
 screen = pygame.display.set_mode(size)
 
 # trash
-trashPosx, trashPosy = 1000, 1000
+#trashPosx, trashPosy = 1000, 1000
 
 # Background image
 bg = pygame.image.load("images/bgs/bg.png")
@@ -20,18 +20,19 @@ screen.blit(pygame.transform.scale(boy1, (350, 350)), (170, 150))
 
 # Character avatar 2
 boy2 = pygame.image.load("images/characters/boy2.png")
-screen.blit(pygame.transform.scale(boy2, (350, 350)), (trashPosx, trashPosy))
+screen.blit(pygame.transform.scale(boy2, (350, 350)), (170, 150))
 
-# Bg for character
-characterBg = pygame.image.load("images/bgs/characterBg.png")
-screen.blit(pygame.transform.scale(boy1, (350, 350)), (170, 150))
+# Character avatar 3
+boy3 = pygame.image.load("images/characters/boy3.png")
+screen.blit(pygame.transform.scale(boy3, (350, 350)), (170, 150))
+
+boy = boy1
 
 # Coin rect
 rectColor = (0, 0, 0)
-pygame.draw.rect(screen, rectColor, [240, 0, 200, 50], 0)
 
 # Amount of coins
-coinCounter = 0
+coinCounter = 9999
 
 # Amount of coins that you gonna get for 1 click
 coinsForClick = 1
@@ -71,52 +72,23 @@ MultiplierMultiplierPrice = 10
 
 # Coins info
 coins = pygame.font.SysFont('Comic Sans MS', 50)
-textSurface = coins.render(str(coinCounter), False, (235, 235, 235))
-screen.blit(textSurface, (240, -15))
 
 # AutoClicker rect
 autoClick = pygame.Surface((220, 100))
 autoClick.set_alpha(200)
 autoClick.fill((255, 255, 255))
-screen.blit(autoClick, (480, 0))
 
 # Multiplier rect
 autoClick = pygame.Surface((220, 100))
 autoClick.set_alpha(200)
 autoClick.fill((255, 255, 255))
-screen.blit(autoClick, (480, 400))
 
 # Auto Clicker info
 autoClickInfo = pygame.font.SysFont('Comic Sans MS', 26)
-textSurface = autoClickInfo.render("AutoClicker x", False, (0, 0, 0))
-screen.blit(textSurface, (490, -5))
+textAutoClicker = autoClickInfo.render("AutoClicker x", False, (0, 0, 0))
 
 # Multiplier info
-autoClickInfo = pygame.font.SysFont('Comic Sans MS', 26)
-textSurface = autoClickInfo.render("Multiplier x", False, (0, 0, 0))
-screen.blit(textSurface, (490, 400))
-
-# Auto Clicker info X multiplier
-autoClickMultiplier = pygame.font.SysFont('Comic Sans MS', 26)
-textSurface = autoClickMultiplier.render(str(autoClickMultiplierX), False, (255, 255, 255))
-screen.blit(textSurface, (660, -3))
-
-# Multiplier X info multiplier
-multiplierMultiplier = pygame.font.SysFont('Comic Sans MS', 26)
-textSurface = multiplierMultiplier.render(str(multiplierMultiplierX), False, (255, 255, 255))
-screen.blit(textSurface, (640, 400))
-
-# Auto Clicker info X multiplier rect
-autoClickMultiplierBack = pygame.Surface((40, 40))
-autoClickMultiplierBack.set_alpha(1000)
-autoClickMultiplierBack.fill((0, 0, 0))
-screen.blit(autoClickMultiplierBack, (660, -3))
-
-# Multiplier info X multiplier rect
-autoClickMultiplierBack = pygame.Surface((40, 40))
-autoClickMultiplierBack.set_alpha(1000)
-autoClickMultiplierBack.fill((0, 0, 0))
-screen.blit(autoClickMultiplierBack, (640, 400))
+textMultiplier = autoClickInfo.render("Multiplier x", False, (0, 0, 0))
 
 # BUY Button autoClicker
 buyButton = pygame.Surface((180, 50))
@@ -124,59 +96,21 @@ buyButton.set_alpha(1000)
 buyButton.fill((255, 129, 193))
 screen.blit(buyButton, (490, 40))
 
-# BUY Button multiplier
-buyButton = pygame.Surface((180, 50))
-buyButton.set_alpha(1000)
-buyButton.fill((255, 129, 193))
-screen.blit(buyButton, (490, 445))
-
 # BUY Button Text autoClicker
-buyButtonText = pygame.font.SysFont('Comic Sans MS', 26)
-textSurface = buyButtonText.render('BUY for ', False, (255, 255, 255))
-screen.blit(textSurface, (490, 40))
-
-# BUY Button Text Multiplier
-buyButtonText = pygame.font.SysFont('Comic Sans MS', 26)
-textSurface = buyButtonText.render('BUY for ', False, (255, 255, 255))
-screen.blit(textSurface, (500, 450))
+textBUYFor = autoClickInfo.render('BUY for ', False, (255, 255, 255))
 
 # Auto Clicker info X multiplier Price Rect
 autoClickMultiplierBack = pygame.Surface((40, 40))
 autoClickMultiplierBack.set_alpha(1000)
 autoClickMultiplierBack.fill((0, 0, 0))
-screen.blit(autoClickMultiplierBack, (610, 47))
-
-# Multiplier info X multiplier Price Rect
-autoClickMultiplierBack = pygame.Surface((40, 40))
-autoClickMultiplierBack.set_alpha(1000)
-autoClickMultiplierBack.fill((0, 0, 0))
-screen.blit(autoClickMultiplierBack, (610, 450))
-
-# Auto Clicker info X multiplier Price
-autoClickMultiplierPriceInfo = pygame.font.SysFont('Comic Sans MS', 26)
-textSurface = autoClickMultiplierPriceInfo.render(str(autoClickMultiplierPrice), False, (255, 255, 255))
-screen.blit(textSurface, (610, 47))
-
-# Multiplier info X multiplier Price
-multiplierMultiplierPriceInfo = pygame.font.SysFont('Comic Sans MS', 26)
-textSurface = multiplierMultiplierPriceInfo.render(str(MultiplierMultiplierPrice), False, (255, 255, 255))
-screen.blit(textSurface, (610, 450))
 
 # lvl info text
-lvlText = pygame.font.SysFont('Comic Sans MS', 26)
-textSurface = lvlText.render('LVL:  ', False, (255, 255, 255))
-screen.blit(textSurface, (0, 0))
+textLvl = autoClickInfo.render('LVL:  ', False, (255, 255, 255))
 
 # lvl info text rect
 lvlNumberRect = pygame.Surface((40, 40))
 lvlNumberRect.set_alpha(1000)
 lvlNumberRect.fill((0, 0, 0))
-screen.blit(lvlNumberRect, (60, 0))
-
-# lvl info number
-lvlNumberInfo = pygame.font.SysFont('Comic Sans MS', 26)
-textSurface = lvlNumberInfo.render(str(lvl), False, (255, 255, 255))
-screen.blit(textSurface, (60, 0))
 
 pygame.display.set_caption("clicker")
 
@@ -196,9 +130,8 @@ def autoClick():
 
 # Анимировать уведомление о повышении уровня
 
-# Смена персонажа при повышении ЛВЛа
-
 # Доработать функцию ниже, чтобы она работала в коде игры
+
 '''
 # Make long number short
 def shorten_number(number_to_shorten):
@@ -213,7 +146,6 @@ def shorten_number(number_to_shorten):
         else:
             return number_to_shorten
 '''
-
 
 # main loop
 while mainLoop:
@@ -279,74 +211,59 @@ while mainLoop:
     # number but round
     #coinCounterShort = shorten_number(coinCounter)
 
-    # Coin rect
-    rectColor = (0, 0, 0)
-    pygame.draw.rect(screen, rectColor, [240, 0, 200, 50], 0)
+    # Draw everything
+    screen.blit(bg, (0, 0))
 
-    # Amount of coins
-    coins = pygame.font.SysFont('Comic Sans MS', 50)
+    if coinCounter >= 1000 and coinCounter <= 9999:
+        boy = boy2
+
+    elif coinCounter >= 10000 and coinCounter <= 99999:
+        boy = boy3
+
+    screen.blit(pygame.transform.scale(boy, (350, 350)), (170, 150))
+
     textSurface = coins.render(str(coinCounter), False, (235, 235, 235))
     screen.blit(textSurface, (240, -15))
 
-    # Auto Clicker info X multiplier rect
-    autoClickMultiplierBack = pygame.Surface((40, 40))
-    autoClickMultiplierBack.set_alpha(1000)
-    autoClickMultiplierBack.fill((0, 0, 0))
-    screen.blit(autoClickMultiplierBack, (660, -3))
+    screen.blit(autoClick, (480, 0))
+    screen.blit(autoClick, (480, 400))
+    screen.blit(textAutoClicker, (490, -5))
+    screen.blit(textMultiplier, (490, 400))
+
+    screen.blit(buyButton, (490, 40))
+    screen.blit(buyButton, (490, 445))
+    screen.blit(textBUYFor, (490, 40))
+    screen.blit(textBUYFor, (500, 450))
 
     # Auto Clicker info X multiplier Price Rect
-    autoClickMultiplierBack = pygame.Surface((40, 40))
-    autoClickMultiplierBack.set_alpha(1000)
-    autoClickMultiplierBack.fill((0, 0, 0))
-    screen.blit(autoClickMultiplierBack, (610, 47))
+    #screen.blit(autoClickMultiplierBack, (610, 47))
 
     # Auto Clicker info X multiplier
-    autoClickMultiplier = pygame.font.SysFont('Comic Sans MS', 26)
-    textSurface = autoClickMultiplier.render(str(autoClickMultiplierX), False, (255, 255, 255))
-    screen.blit(textSurface, (660, -3))
+    textAutoClickerInfoX = autoClickInfo.render(str(autoClickMultiplierX), False, (255, 255, 255))
+    screen.blit(textAutoClickerInfoX, (660, -3))
 
-    # Auto Clicker info X multiplier Price
-    autoClickMultiplierPriceInfo = pygame.font.SysFont('Comic Sans MS', 26)
-    textSurface = autoClickMultiplierPriceInfo.render(str(autoClickMultiplierPrice), False, (255, 255, 255))
-    screen.blit(textSurface, (610, 47))
-
-    # Multiplier info X multiplier Price Rect
-    autoClickMultiplierBack = pygame.Surface((40, 40))
-    autoClickMultiplierBack.set_alpha(1000)
-    autoClickMultiplierBack.fill((0, 0, 0))
-    screen.blit(autoClickMultiplierBack, (610, 450))
+    textAutoClickMultiplierPriceInfo = autoClickInfo.render(str(autoClickMultiplierPrice), False, (255, 255, 255))
+    screen.blit(textAutoClickMultiplierPriceInfo, (610, 47))
 
     # Multiplier info X multiplier Price
-    multiplierMultiplierPriceInfo = pygame.font.SysFont('Comic Sans MS', 26)
-    textSurface = multiplierMultiplierPriceInfo.render(str(MultiplierMultiplierPrice), False, (255, 255, 255))
-    screen.blit(textSurface, (610, 450))
-
-    # Multiplier info X multiplier rect
-    autoClickMultiplierBack = pygame.Surface((40, 40))
-    autoClickMultiplierBack.set_alpha(1000)
-    autoClickMultiplierBack.fill((0, 0, 0))
-    screen.blit(autoClickMultiplierBack, (640, 400))
+    textMultiplierMultiplierPriceInfo = autoClickInfo.render(str(MultiplierMultiplierPrice), False, (255, 255, 255))
+    screen.blit(textMultiplierMultiplierPriceInfo, (610, 450))
 
     # Multiplier X info multiplier
-    multiplierMultiplier = pygame.font.SysFont('Comic Sans MS', 26)
-    textSurface = multiplierMultiplier.render(str(multiplierMultiplierX), False, (255, 255, 255))
-    screen.blit(textSurface, (640, 400))
+    textMultiplierXInfo = autoClickInfo.render(str(multiplierMultiplierX), False, (255, 255, 255))
+    screen.blit(textMultiplierXInfo, (640, 400))
 
+    screen.blit(textLvl, (0, 0))
     # lvl info text rect
-    lvlNumberRect = pygame.Surface((40, 40))
-    lvlNumberRect.set_alpha(1000)
-    lvlNumberRect.fill((0, 0, 0))
-    screen.blit(lvlNumberRect, (60, 0))
 
     # lvl info number
-    lvlNumberInfo = pygame.font.SysFont('Comic Sans MS', 26)
-    textSurface = lvlNumberInfo.render(str(lvl), False, (255, 255, 255))
-    screen.blit(textSurface, (60, 0))
+    textlvlNumberInfo = autoClickInfo.render(str(lvl), False, (255, 255, 255))
+    screen.blit(textlvlNumberInfo, (60, 0))
 
     pygame.display.update()
 
     pygame.display.flip()
 
-    clock.tick(30)
+    clock.tick(20)
 
 pygame.quit()
